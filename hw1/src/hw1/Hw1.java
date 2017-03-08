@@ -2,17 +2,21 @@ package hw1;
 
 public class Hw1 {
 	public static void main(String args[]) {
-		for (String str : args) {
 
-			if (str.startsWith("a") || str.startsWith("e") || str.startsWith("i") || str.startsWith("o")
-					|| str.startsWith("e")) {
-				str = str.toUpperCase().charAt(0) + str.substring(1) + "ay";
+		for (int i = 0; i < args.length; i++) {
+
+			if (args[i].startsWith("a") || args[i].startsWith("e") || args[i].startsWith("i") || args[i].startsWith("o")
+					|| args[i].startsWith("e")) {
+				args[i] = args[i].toUpperCase().charAt(0) + args[i].substring(1) + "ay";
 			} else {
-				str = str.toUpperCase().charAt(1) + str.substring(2) + str.charAt(0) + "ay";
+				args[i] = args[i].toUpperCase().charAt(1) + args[i].substring(2) + args[i].charAt(0) + "ay";
 			}
 
-			System.out.println(str);
-
+			System.out.print(args[i]);
+			
+			if(i != args.length -1 ) 
+			{ System.out.print(" ");}
+			
 		}
 	}
 }
