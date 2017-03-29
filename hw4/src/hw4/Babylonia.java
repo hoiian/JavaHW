@@ -7,12 +7,12 @@ public class Babylonia {
 
 	public static void main(String[] args){
 		scan = new Scanner(System.in);
-		long n = 0;
-		double guess=0.0, lastguess=0.0;
+//		long n = 0;
+		double n=0.0,  guess=0.0, lastguess=0.0;
 		DecimalFormat pattern = new DecimalFormat("#.##");
 		
 //		System.out.print("number = ");
-		n = scan.nextLong();
+		n = scan.nextDouble();
 		
 		guess = n/2;
 		do{
