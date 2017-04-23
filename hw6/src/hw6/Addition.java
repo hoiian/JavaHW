@@ -1,11 +1,10 @@
 package hw6;
 
-public class Addition{
-	public static void main(String[] args){
+public class Addition implements IOperation{
 
-//	public String perform(String num11, String num2) {
-		String num1 = "923";
-		String num2 = "923";
+	public String perform(String num1, String num2) {
+//		String num1 = "923";
+//		String num2 = "923";
 		int i;
 		int len1 = num1.length();
 		int len2 = num2.length();
@@ -52,7 +51,7 @@ public class Addition{
 //			System.out.print(ans);
 
 		
-		//return null;
+		return ans;
 	}
 
 }
