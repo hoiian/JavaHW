@@ -22,18 +22,21 @@ private static Scanner scan;
 				}else {
 					result = "-" + sub.perform(num1, num2);
 				}
-			}else if(!num1.startsWith("-") && num2.startsWith("-")){ //2: a+(-b) = a-b
+			}
+			else if(!num1.startsWith("-") && num2.startsWith("-")){ //2: a+(-b) = a-b
 				num2 = num2.substring(1);
 				if(comp.perform(num1, num2) == "-1"){
 					result = "-" + sub.perform(num2, num1);
 				}else {
 					result = sub.perform(num1, num2);
 				}
-			}else if(num1.startsWith("-") && num2.startsWith("-")){ //3: (-a)+(-b) = -(a+b) 
+			}
+			else if(num1.startsWith("-") && num2.startsWith("-")){ //3: (-a)+(-b) = -(a+b) 
 				num1 = num1.substring(1);
 				num2 = num2.substring(1);
 				result = "-" + add.perform(num1, num2);
-			}else{
+			}
+			else{ //4
 				result = add.perform(num1, num2);
 			}
 			break;
@@ -42,10 +45,12 @@ private static Scanner scan;
 			if(num1.startsWith("-") && !num2.startsWith("-")){ //1:(-a)-b = -(a+b)
 				num1 = num1.substring(1);
 				result = "-" + add.perform(num1, num2);
-			}else if(!num1.startsWith("-") && num2.startsWith("-")){ //2: a+(-b) = a+b
+			}
+			else if(!num1.startsWith("-") && num2.startsWith("-")){ //2: a+(-b) = a+b
 				num2 = num2.substring(1);
 				result = add.perform(num1, num2);
-			}else if(num1.startsWith("-") && num2.startsWith("-")){ //3: (-a)-(-b) = b-a 
+			}
+			else if(num1.startsWith("-") && num2.startsWith("-")){ //3: (-a)-(-b) = b-a 
 				num1 = num1.substring(1);
 				num2 = num2.substring(1);
 				if(comp.perform(num1, num2) == "-1"){ //b-a
@@ -53,7 +58,8 @@ private static Scanner scan;
 				}else {
 					result = "-" + sub.perform(num1, num2);
 				}
-			}else { // a-b
+			}
+			else { //4: a-b
 				if(comp.perform(num1, num2) == "-1"){
 					result = "-" + sub.perform(num2, num1);
 				}else {
@@ -61,22 +67,51 @@ private static Scanner scan;
 				}
 			}
 			
-
-			
 			break;
 		
 		case ">":
-			if(comp.perform(num1, num2) == "1")
-				result = "true";
-			else 
+			if(num1.startsWith("-") && !num2.startsWith("-")){ //1:(-)>(+) X
 				result = "false";
+			}
+			else if(!num1.startsWith("-") && num2.startsWith("-")){ //2: (+)>(-) V
+				result = "true";
+			}
+			else if(num1.startsWith("-") && num2.startsWith("-")){ //3: a<b ?
+					if(comp.perform(num1, num2) == "-1")
+						result = "true";
+					else 
+						result = "false";
+			}
+			else {
+				if(comp.perform(num1, num2) == "1")
+					result = "true";
+				else 
+					result = "false";
+			}
+
 			break;
 		
 		case "<":
-			if(comp.perform(num1, num2) == "-1")
+			if(num1.startsWith("-") && !num2.startsWith("-")){ //1:(-)<(+) V
 				result = "true";
-			else 
+			}
+			else if(!num1.startsWith("-") && num2.startsWith("-")){ //2: (+)>(-) X
 				result = "false";
+			}
+			else if(num1.startsWith("-") && num2.startsWith("-")){ //3: a>b ?
+					if(comp.perform(num1, num2) == "1")
+						result = "true";
+					else 
+						result = "false";
+			}
+			else {
+				if(comp.perform(num1, num2) == "-1")
+					result = "true";
+				else 
+					result = "false";
+			}
+			
+			
 			break;
 		
 		case "=":
@@ -84,6 +119,7 @@ private static Scanner scan;
 				result = "true";
 			else 
 				result = "false";
+			
 			break;
 		}
 		
