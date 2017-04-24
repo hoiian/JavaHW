@@ -5,14 +5,22 @@ public class Main {
 private static Scanner scan;
 	public static void main(String args[]) {
 		scan = new Scanner(System.in);
-		String num1 = scan.next();
-		String op = scan.next();
-		String num2 = scan.next();	
-		String result = "0";
 		IOperation add = new Addition();
 		IOperation sub = new Subtraction();
-		IOperation comp = new Comparison();
+		IOperation comp = new Comparison();		
+		String result = "0";
+		int i = 0;
+		String num1 = "0";
 		
+		while (scan.hasNext()){
+		i++;
+		if(i==1) {num1 = scan.next();}
+		else num1 = result;
+		String op = scan.next();
+		String num2 = scan.next();
+		
+		System.out.println(scan.hasNextLine());
+
 		switch(op){
 		case "+": 
 			if(num1.startsWith("-") && !num2.startsWith("-")){ //1: -a+b = b-a
@@ -121,15 +129,19 @@ private static Scanner scan;
 				result = "false";
 			
 			break;
+		} //switch
+		
+		System.out.println("res1:" + result);
+
 		}
-		
-		
+
 //		System.out.println(num1);
 //		System.out.println(op);
 //		System.out.println(num2);
-		System.out.println(result);
+		System.out.println("res2:" + result);
+
 		
 		
 		
-	}
-}
+	} //main
+} //class
