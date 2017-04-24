@@ -15,11 +15,54 @@ private static Scanner scan;
 		
 		switch(op){
 		case "+": 
-			result = add.perform(num1, num2); 
+			if(num1.startsWith("-") && !num2.startsWith("-")){ //1: -a+b = b-a
+				num1 = num1.substring(1);
+				if(comp.perform(num1, num2) == "-1"){ //b-a
+					result = sub.perform(num2, num1);
+				}else {
+					result = "-" + sub.perform(num1, num2);
+				}
+			}else if(!num1.startsWith("-") && num2.startsWith("-")){ //2: a+(-b) = a-b
+				num2 = num2.substring(1);
+				if(comp.perform(num1, num2) == "-1"){
+					result = "-" + sub.perform(num2, num1);
+				}else {
+					result = sub.perform(num1, num2);
+				}
+			}else if(num1.startsWith("-") && num2.startsWith("-")){ //3: (-a)+(-b) = -(a+b) 
+				num1 = num1.substring(1);
+				num2 = num2.substring(1);
+				result = "-" + add.perform(num1, num2);
+			}else{
+				result = add.perform(num1, num2);
+			}
 			break;
 		
 		case "-":
-			result = sub.perform(num1, num2); 
+			if(num1.startsWith("-") && !num2.startsWith("-")){ //1:(-a)-b = -(a+b)
+				num1 = num1.substring(1);
+				result = "-" + add.perform(num1, num2);
+			}else if(!num1.startsWith("-") && num2.startsWith("-")){ //2: a+(-b) = a+b
+				num2 = num2.substring(1);
+				result = add.perform(num1, num2);
+			}else if(num1.startsWith("-") && num2.startsWith("-")){ //3: (-a)-(-b) = b-a 
+				num1 = num1.substring(1);
+				num2 = num2.substring(1);
+				if(comp.perform(num1, num2) == "-1"){ //b-a
+					result = sub.perform(num2, num1);
+				}else {
+					result = "-" + sub.perform(num1, num2);
+				}
+			}else { // a-b
+				if(comp.perform(num1, num2) == "-1"){
+					result = "-" + sub.perform(num2, num1);
+				}else {
+					result = sub.perform(num1, num2);
+				}
+			}
+			
+
+			
 			break;
 		
 		case ">":
