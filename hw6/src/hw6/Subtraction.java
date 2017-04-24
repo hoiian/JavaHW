@@ -32,7 +32,7 @@ public class Subtraction implements IOperation{
 					i2[len2-i-1]= 0;
 					i2[len2-i-1]=Integer.parseInt(String.valueOf(c2[i]));
 				}
-			
+/*			
 				for(j=0; j<len1; j++){
 					System.out.print(i1[j]);
 				}
@@ -41,7 +41,7 @@ public class Subtraction implements IOperation{
 					System.out.print(i2[j]);
 				}
 				System.out.println();
-	
+*/	
 				for(i=0;i<len3;i++){
 					ans = String.valueOf((i1[i]-i2[i]+carry+10)%10)+ans;
 					carry = (i1[i]-i2[i]+carry+10)/10-1;
@@ -50,7 +50,7 @@ public class Subtraction implements IOperation{
 				while(ans.startsWith("0") && !ans.equals("0"))
 					ans = ans.substring(1);
 				
-					System.out.print(ans);
+//					System.out.print(ans);
 
 				
 				return ans;
