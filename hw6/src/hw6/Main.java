@@ -1,18 +1,37 @@
 package hw6;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
 private static Scanner scan;
 	public static void main(String args[]) {
 		scan = new Scanner(System.in);
+
 		IOperation add = new Addition();
 		IOperation sub = new Subtraction();
 		IOperation comp = new Comparison();		
 		String result = "0";
 		int i = 0;
 		String num1 = "0";
+		String op = "0";
+		String num2 = "0";
 		
-		while (scan.hasNext()){
+		String statement = scan.nextLine();
+//		System.out.println(statement);
+		StringTokenizer token = new StringTokenizer(statement);
+		
+		while(token.hasMoreTokens()){
+			i++;
+			if (i == 1) {
+				num1 = token.nextToken();
+			} else {
+				num1 = result;
+			}
+			
+			op = token.nextToken();
+			num2 = token.nextToken();
+		
+/**		while (scan.hasNext()){
 		i++;
 		if(i==1) {num1 = scan.next();}
 		else num1 = result;
@@ -20,19 +39,23 @@ private static Scanner scan;
 		String num2 = scan.next();
 		
 		System.out.println(scan.hasNextLine());
-
+**/
+		
 		switch(op){
-		case "+": 
+		case "+"
+				+ "": 
 			if(num1.startsWith("-") && !num2.startsWith("-")){ //1: -a+b = b-a
 				num1 = num1.substring(1);
+				
 				if(comp.perform(num1, num2) == "-1"){ //b-a
 					result = sub.perform(num2, num1);
-				}else {
+				}else{
 					result = "-" + sub.perform(num1, num2);
 				}
 			}
 			else if(!num1.startsWith("-") && num2.startsWith("-")){ //2: a+(-b) = a-b
 				num2 = num2.substring(1);
+				
 				if(comp.perform(num1, num2) == "-1"){
 					result = "-" + sub.perform(num2, num1);
 				}else {
@@ -61,6 +84,7 @@ private static Scanner scan;
 			else if(num1.startsWith("-") && num2.startsWith("-")){ //3: (-a)-(-b) = b-a 
 				num1 = num1.substring(1);
 				num2 = num2.substring(1);
+				
 				if(comp.perform(num1, num2) == "-1"){ //b-a
 					result = sub.perform(num2, num1);
 				}else {
@@ -81,15 +105,18 @@ private static Scanner scan;
 			if(num1.startsWith("-") && !num2.startsWith("-")){ //1:(-)>(+) X
 				result = "false";
 			}
+			
 			else if(!num1.startsWith("-") && num2.startsWith("-")){ //2: (+)>(-) V
 				result = "true";
 			}
+			
 			else if(num1.startsWith("-") && num2.startsWith("-")){ //3: a<b ?
 					if(comp.perform(num1, num2) == "-1")
 						result = "true";
 					else 
 						result = "false";
 			}
+			
 			else {
 				if(comp.perform(num1, num2) == "1")
 					result = "true";
@@ -103,15 +130,18 @@ private static Scanner scan;
 			if(num1.startsWith("-") && !num2.startsWith("-")){ //1:(-)<(+) V
 				result = "true";
 			}
+			
 			else if(!num1.startsWith("-") && num2.startsWith("-")){ //2: (+)>(-) X
 				result = "false";
 			}
+			
 			else if(num1.startsWith("-") && num2.startsWith("-")){ //3: a>b ?
 					if(comp.perform(num1, num2) == "1")
 						result = "true";
 					else 
 						result = "false";
 			}
+			
 			else {
 				if(comp.perform(num1, num2) == "-1")
 					result = "true";
@@ -131,14 +161,14 @@ private static Scanner scan;
 			break;
 		} //switch
 		
-		System.out.println("res1:" + result);
-
-		}
+//		System.out.println("res1:" + result);
+		
+	   }
 
 //		System.out.println(num1);
 //		System.out.println(op);
 //		System.out.println(num2);
-		System.out.println("res2:" + result);
+		System.out.println(result);
 
 		
 		

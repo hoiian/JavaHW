@@ -6,7 +6,7 @@ public class Subtraction implements IOperation{
 		public String perform(String num1, String num2) {
 //				String num1 = "111111111111111111111111111";
 //				String num2 = "1111111111111111111110000";
-				int i,j;
+				int i;
 				int len1 = num1.length();
 				int len2 = num2.length();
 				int len3 = 0;
